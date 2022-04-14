@@ -15,7 +15,7 @@ module "website" {
   deployment_endpoint    = "${lookup(var.deployment_endpoint, "${var.deployment_environment}")}${var.google_domain_name}"
 
   ## Deployment path which is local chart location 
-  deployment_path        = "website"
+  deployment_path        = "./charts/website"
 
   ## Custom vars if you would like to customize helm chart
   template_custom_vars  = {
