@@ -7,8 +7,9 @@ module "website" {
   remote_chart           = false                              ## Set to false for local chart
   enabled                = true                               ## Enable to deploy the chart
   template_custom_vars   = {
-    deployment_endpoint  = lookup(var.deployment_endpoint, var.deployment_environment)
-    deployment_image     = var.deployment_image
+    deployment_endpoint   = lookup(var.deployment_endpoint, var.deployment_environment)
+    deployment_image      = var.deployment_image
+    replicas              = lookup(var.dynamic_replicas, var.deployment_environment)
   }
 }
 
@@ -22,6 +23,18 @@ variable "deployment_endpoint" {
     dev     = "dev.fsadykov.com"
     }
   description = "-(Optional) The endpoint of the application"
+}
+
+
+variable "dynamic_replicas" {
+  type        = map
+  default     = {
+    prod    = 10
+    stage   = 5
+    qa      = 3
+    dev     = 1
+    }
+  description = "-(Optional) The dynamic replicas based on the environment"
 }
 
 
