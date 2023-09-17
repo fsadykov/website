@@ -1,0 +1,18 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v2.3.0
+  hooks:
+  - id: check-yaml
+    exclude: |
+      (?x)^(
+        deployments/terraform/charts/website/templates/serviceaccount.yaml|
+        deployments/terraform/charts/website/templates/ingress.yaml|
+        deployments/terraform/charts/website/templates/tests/test-connection.yaml|
+        deployments/terraform/charts/website/templates/tests/test-connection.yaml|
+        deployments/terraform/charts/website/templates/hpa.yaml|
+        deployments/terraform/charts/website/templates/deployment.yaml|
+        deployments/terraform/charts/website/templates/service.yaml
+      )$
+  - id: end-of-file-fixer
+  - id: trailing-whitespace
+  - id: check-json
